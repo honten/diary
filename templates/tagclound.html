@@ -1,0 +1,61 @@
+<div id="tagclound">
+    <h3>Tag Cloud</h3>
+    <div>
+        <span class="tagheader">My Blog Tags</span>
+
+        <div class="cloud">
+            {%for tag in tags%}
+            <a href="/tag/{{tag.tag|unquote}}"  class="tag{{tag.entrycount}}">{{tag.tag|unquote}}</a>
+            {% endfor%}
+        </div>
+    </div>
+
+    <div id="">
+        <span class="tagheader">My Tweet</span>
+        <div class="cloud">
+	  <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+	  <script>
+	  new TWTR.Widget({
+	  version: 2,
+	  type: 'profile',
+	  rpp: 4,
+	  interval: 6000,
+	  width: 200,
+	  height: 300,
+	  theme: {
+	  shell: {
+	  background: '#ffffff',
+	  color: '#000000'
+	  },
+	  tweets: {
+	  background: '#ffffff',
+	  color: '#000000',
+	  links: '#4aed05'
+	  }
+	  },
+	  features: {
+	  scrollbar: true,
+	  loop: false,
+	  live: true,
+	  hashtags: false,
+	  timestamp: true,
+	  avatars: false,
+	  behavior: 'all'
+	  }
+	  }).render().setUser('honten').start();
+	  </script>
+        </div>
+    </div>
+    
+    
+    {% if BLOG.delicious_enable %}
+    <div id="delicious">
+        <span class="tagheader">My Del.icio.us</span>
+        <div class="cloud">
+            {% for tag in delicious %}
+            <a href="/delicious/{{tag.tag|urlencode}}" class="tag{{tag.entrycount}}">{{tag.tag}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
